@@ -23,7 +23,8 @@ export const Body = () => {
   },[]);
 
   const fetchData=async ()=>{
-   const data= await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
+   
+   const data= await fetch('https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING')
    const jsonData= await data.json();
  
    const gridData=jsonData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
@@ -53,7 +54,7 @@ export const Body = () => {
          const filteredList=listOfRes.filter(res=>res.info.avgRating>4);
          setFilteredList(filteredList);
        }}>Top Rated Restaurants</button>
-
+     <p className='bg-red-600 text-white text-xl ml-40'>Website is  under construction. Check "About Us" for details. </p>
       </div>
 
       <div className='flex flex-col items-center'>
