@@ -8,6 +8,7 @@ import About from "./components/About"
 import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter,Outlet,RouterProvider } from "react-router-dom";
 import Shimmer from "./components/Shimmer";
+import 'keen-slider/keen-slider.min.css'
 
 //Chunking
 //Lazy-loading

@@ -1,11 +1,20 @@
-/* Select all CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: Grotesque;
+  src: url("./src/assets/fonts/FontsFree-Net-BasisGrotesquePro-Regular.ttf") format("truetype");
+}
+/*
+Select all CSS
 * {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
   }
   
-  /* Header CSS */
+
   .header {
     display: flex;
     justify-content: space-between;
@@ -53,7 +62,7 @@
   }
  
   
-  /* Body CSS */
+
   .search-container {
     margin: 20px auto;
     text-align: center;
@@ -150,7 +159,7 @@
     padding: 0 10px 3px 0;
   }
   
-  /* footer CSS */
+
   .footer {
     margin: 10px;
     width: auto;
@@ -199,4 +208,4 @@
   .link_res{
     color: inherit;
     text-decoration: none;
-  }
+  } */
