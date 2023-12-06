@@ -5,7 +5,7 @@ import useOnlineStatus from '../utils/useOnlineStatus'
 import { Link } from 'react-router-dom'
 import Shimmer from './Shimmer'
 import Carousel from './Carousel'
-
+import { GET_RESATAURANT } from '../utils/constants'
 
 export const Body = () => {
 
@@ -24,7 +24,7 @@ export const Body = () => {
 
   const fetchData=async ()=>{
    
-   const data= await fetch('https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING')
+   const data= await fetch(GET_RESATAURANT)
    const jsonData= await data.json();
  
    const gridData=jsonData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;

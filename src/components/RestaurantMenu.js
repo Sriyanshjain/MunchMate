@@ -3,10 +3,11 @@ import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantMenuCategory from "./RestaurantMenuCategory";
+import { useState } from "react";
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const resInfo = useRestaurantMenu(resId);
-
+  const [showIndex,setShowIndex]=useState(null);
   if (!resInfo) return <Shimmer />;
   const {
     name,
@@ -17,8 +18,6 @@ const RestaurantMenu = () => {
     cloudinaryImageId,
     avgRating,
   } = resInfo?.cards[0]?.card?.card?.info;
-  const { itemCards } =
-    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card.card;
   const categories =
     resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c) =>
       c?.card?.card?.["@type"].endsWith("v2.ItemCategory")
@@ -48,7 +47,7 @@ const RestaurantMenu = () => {
         </div>
         <div className="mt-4">
           {
-            categories.map((item)=><RestaurantMenuCategory key={item?.card?.card?.title} data={item}/>)
+            categories.map((item,index)=><RestaurantMenuCategory key={item?.card?.card?.title} data={item} setShowIndex={()=>setShowIndex(index)} isExpanded={index==showIndex?true:false}/>)
           }
         </div>
       </div>

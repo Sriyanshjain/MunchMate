@@ -1,34 +1,22 @@
-import { ChevronDownIcon ,ChevronUpIcon} from "@heroicons/react/24/outline";
-import { useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { CDN_URL } from "../utils/constants";
-import { useDispatch } from "react-redux";
-import {addItems} from "../utils/slices/cartSlice"
-const RestaurantMenuCategory =(props)=>{
-  /*inspite of lifting the expanded state variable from here to resmenu component, we will maintain
-  a toggle true false here so that we can also close the already expanded category*/
-   const [toggleExpand,setToggleExpand]=useState(false);
-    const {title,itemCards}=props?.data?.card?.card;
-    const {isExpanded,setShowIndex}=props;
-    const dispatch= useDispatch();
-
-    const handleAdd=(item)=>{
-        dispatch(addItems(item))
+import {clearCart} from "../utils/slices/cartSlice"
+const Cart=()=>{
+   
+    const cartItems= useSelector((store)=>store.cart.items);
+    const dispatch=useDispatch();
+   const handleClear=()=>
+    {
+         dispatch(clearCart());
     }
-    const handleExpand =()=>{
-        setShowIndex();
-        setToggleExpand(!toggleExpand);
-    }
-    return (
-        <div className="cursor-pointer" >
-        <div className="flex justify-between bg-slate-100 mt-3 p-5 rounded-lg" onClick={handleExpand}>
-            <div className="text-xl font-primary font-bold text-black-heading">{title} ({itemCards.length})</div>
-            <div >{isExpanded && toggleExpand?<ChevronUpIcon className='w-6 h-6 text-xl'/>:<ChevronDownIcon className='w-6 h-6 text-xl'/>}</div>
-            </div>
-           { isExpanded && toggleExpand &&<div className="bg-white">
-                <ul>
-                 {
-                    itemCards.map((item)=>{
+    return (<div>
+              <button className='text-white bg-black rounded-lg p-2 m-2 float-right' onClick={handleClear}>Clear All</button>
+         {   
+                    cartItems.map((item)=>{
                         return<div key={item?.card?.info?.id}>
+                      
+                            <div className='flex w-9/12 justify-center mx-auto'>
+                                <div className='w-6/12'>
                           <div className="flex justify-between" >
                             <div className="p-4 mt-11 w-9/12">
                             {item?.card?.info?.itemAttribute?.vegClassifier &&
@@ -41,7 +29,7 @@ const RestaurantMenuCategory =(props)=>{
                              </div>
                              <div className="w-3/12 p-4 mt-11">
                                 <div className="absolute">
-                                <button onClick={()=>handleAdd(item)} className="text-orange-500 px-6 bg-white rounded-md font-primary font-extrabold py-3 ml-8 mt-24 shadow-md  hover:text-white hover:bg-orange-500 ">ADD</button>
+                                <button  className="text-orange-500 px-6 bg-white rounded-md font-primary font-extrabold py-3 ml-8 mt-24 shadow-md  hover:text-white hover:bg-orange-500 ">ADD</button>
                                 </div>
                             { (item?.card?.info?.imageId?<img src={CDN_URL+item?.card?.info?.imageId } className="w-36 bg-center h-32 rounded-lg shadow-lg" />:
                             <img src={require('../assets/sample.png')} alt='' className="w-36 bg-center h-32 rounded-lg shadow-lg" />)
@@ -54,14 +42,15 @@ const RestaurantMenuCategory =(props)=>{
                         </div>
                         <hr className="mt-3"></hr>
                         </div>
+                        <div className='w-6/12'>
+                            </div>
+                        </div>
+                        
+                        </div>
                     }
                        
                     )
                  }
-                </ul>
-            </div>}
-        </div>
-    )
+    </div>)
 }
-
-export default RestaurantMenuCategory;
+export default Cart;

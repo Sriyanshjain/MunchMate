@@ -2,6 +2,7 @@
   "name": "namaste-react",
   "version": "1.0.0",
   "description": "Namaste-react by Sriyansh",
+  "main": "App.js",
   "scripts": {
     "test": "jest",
     "start": "parcel index.html",
@@ -19,7 +20,10 @@
   "homepage": "https://github.com/Sriyanshjain/NamasteReact#readme",
   "devDependencies": {
     "@babel/core": "^7.23.5",
-    "@parcel/watcher": "^2.3.0",
+    "@babel/preset-env": "^7.23.5",
+    "@testing-library/react": "^14.1.2",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
     "parcel": "^2.10.1",
     "postcss": "^8.4.31",
     "process": "^0.11.10",
@@ -27,12 +31,14 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
+    "@reduxjs/toolkit": "^2.0.1",
     "keen-slider": "^6.8.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^9.0.2",
     "react-router-dom": "^6.18.0"
   },
   "browserslist": [
-    "last 2 versions"
+    "last 2 version"
   ]
 }

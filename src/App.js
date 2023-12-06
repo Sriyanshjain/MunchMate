@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useContext } from "react";
 import ReactDOM from "react-dom/client";
 import {Header} from "./components/Header"
 import { Body } from "./components/Body";
@@ -9,7 +9,10 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter,Outlet,RouterProvider } from "react-router-dom";
 import Shimmer from "./components/Shimmer";
 import 'keen-slider/keen-slider.min.css'
-
+import { UserContext } from "./utils/UserContext";
+import { Provider } from "react-redux";
+import Cart from "./components/Cart";
+import appStore from "./utils/store/appStore";
 //Chunking
 //Lazy-loading
 //Code-splitting
@@ -19,13 +22,20 @@ import 'keen-slider/keen-slider.min.css'
 const Grocery=lazy(()=>{
    return  import("./components/Grocery")
 })
+
 const AppLayout=()=>{
     
     return (
+        <Provider store={appStore}>
+        <UserContext.Provider value={{loggedInUser:"Sriyansh Jain"}}>
         <div className="app">
+           
             <Header/>
             <Outlet/>
+           
         </div>
+        </UserContext.Provider>
+        </Provider>
     )
 }
 const appRouter=createBrowserRouter([
@@ -50,6 +60,10 @@ const appRouter=createBrowserRouter([
             {
                 path:"/restaurant/:resId",
                 element:<RestaurantMenu/>
+            },
+            {
+                path:"/cart",
+                element:<Cart/>
             },
             {
                 path:"/grocery",
