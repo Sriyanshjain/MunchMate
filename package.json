@@ -2,7 +2,7 @@
   "name": "namaste-react",
   "version": "1.0.0",
   "description": "Namaste-react by Sriyansh",
-  "main": "App.js",
+
   "scripts": {
     "test": "jest",
     "start": "parcel index.html",
@@ -35,6 +35,7 @@
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@reduxjs/toolkit": "^2.0.1",
+    "@swc/helpers": "^0.5.3",
     "keen-slider": "^6.8.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
