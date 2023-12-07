@@ -1,46 +1,86 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { CDN_URL } from "../utils/constants";
-import {clearCart} from "../utils/slices/cartSlice"
+import {clearCart,increaseItemQuantity,decreaseItemQuantity,removeItem} from "../utils/slices/cartSlice"
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 const Cart=()=>{
    
     const cartItems= useSelector((store)=>store.cart.items);
     const dispatch=useDispatch();
+    const [total,setTotal]=useState(0);
+    const modifyCartValues=()=>{
+        let totalPrice = 0;
+        cartItems.forEach(obj => {
+            const price = obj?.item?.card?.info?.price * obj?.quantity || 0;
+            totalPrice += price;
+          });
+        setTotal(totalPrice/100);
+    }
+    useEffect(()=>{
+     modifyCartValues();
+    },[cartItems])
    const handleClear=()=>
     {
          dispatch(clearCart());
     }
+    const increaseQuantity=(id)=>{
+        dispatch(increaseItemQuantity(id))
+    }
+    const decreaseQuantity=(id)=>{
+        dispatch(decreaseItemQuantity(id))
+    }
+    const removeItemFromCart=(id)=>{
+        dispatch(removeItem(id)) 
+    }
+
+    if(cartItems.length==0)
+    {
+        return <div className='text-center mt-4'><p className=' text-3xl font-semibold font-primary my-auto'>Such Empty...</p>
+                   <Link to='/'><button className='p-4 mt-4 font-bold bg-orange-400 text-white text-xl rounded-lg'>EXPLORE RESTAURANTS NEAR YOU</button></Link> 
+               </div>
+    }
     return (<div>
-              <button className='text-white bg-black rounded-lg p-2 m-2 float-right' onClick={handleClear}>Clear All</button>
+             
               <div className='flex w-9/12  justify-center mx-auto   overflow-hidden min-h-[40rem] max-h-[640]'>
               <div className='w-7/12 overflow-y-auto example  mt-10'>
+           <div className='flex justify-between'>
+            <p className='text-3xl font-bold font-primary m-2 p-2'>Cart</p>
+            <button className='text-white bg-black rounded-lg p-2 m-2 ' onClick={handleClear}>Clear cart</button>
+
+           </div>
          {  
                     cartItems.map((item)=>{
-                        return<div key={item?.card?.info?.id} >
+                        return<div key={item?.item?.card?.info?.id} >
                       
                          
                               
                           <div className="flex justify-between" >
-                            <div className="p-4 mt-11 w-9/12">
-                            {item?.card?.info?.itemAttribute?.vegClassifier &&
-                            
-                            <img src={item?.card?.info?.itemAttribute?.vegClassifier==='VEG' ?require('../assets/veg.png'):require('../assets/non-veg.png')} alt='' className="w-10 bg-center h-9 p-1 rounded-lg" />}    
-                            
-                             <p className="p-1 text-xl font-primary font-bold text-black-heading">{item?.card?.info?.name}</p>
-                             <p className="p-1 text-black-heading font-bold text-lg">₹{item?.card?.info?.price/100}</p>
-                             <p className="p-1 mt-2 text-black-400 text-sm">{item?.card?.info?.description}</p>
-                             </div>
-                             <div className="w-3/12 p-4 mt-11 relative">
-                                <div className="absolute">
-                                <button  className="text-orange-500 px-6 bg-white rounded-md font-primary font-extrabold py-3 ml-8 mt-24 shadow-md  hover:text-white hover:bg-orange-500 ">ADD</button>
-                                </div>
-                            { (item?.card?.info?.imageId?<img src={CDN_URL+item?.card?.info?.imageId } className="w-36 bg-center h-32 rounded-lg shadow-lg" />:
+                          <div className="w-3/12 p-4 mt-11 relative">
+                                
+                            { (item?.item?.card?.info?.imageId?<img src={CDN_URL+item?.item?.card?.info?.imageId } className="w-36 bg-center h-32 rounded-lg shadow-lg" />:
                             <img src={require('../assets/sample.png')} alt='' className="w-36 bg-center h-32 rounded-lg shadow-lg" />)
 
                             }
-                                
+                            <div className='flex'>
+                                <button className='w-8 h-8 mt-5 mx-auto bg-white text-orange-400 border-2 rounded-lg font-bold border-orange-400 hover:text-white hover:bg-orange-400 disabled:cursor-not-allowed'  disabled={item?.quantity === 1} onClick={()=>decreaseQuantity(item?.item?.card?.info?.id)}>-</button>
+                                <p className='mt-5 text-lg font-semibold'>{item?.quantity}</p>
+                                <button className='w-8 h-8 mt-5 mx-auto bg-white text-orange-400 border-2 rounded-lg font-bold border-orange-400 hover:text-white hover:bg-orange-400' onClick={()=>increaseQuantity(item?.item?.card?.info?.id)}>+</button>
+                               
+                                </div> 
                                
                                 
                              </div>
+                            <div className="p-4 mt-11 w-9/12">
+                            {item?.item?.card?.info?.itemAttribute?.vegClassifier &&
+                            
+                            <img src={item?.item?.card?.info?.itemAttribute?.vegClassifier==='VEG' ?require('../assets/veg.png'):require('../assets/non-veg.png')} alt='' className="w-10 bg-center h-9 p-1 rounded-lg" />}    
+                            
+                             <p className="p-1 text-xl font-primary font-bold text-black-heading">{item?.item?.card?.info?.name}</p>
+                             <p className="p-1 text-black-heading font-bold text-lg">₹{item?.item?.card?.info?.price/100}  ({item?.item?.card?.info?.price/100}⨯ {item?.quantity})</p>
+
+                                                                             <button className='p-2 mt-8 float-right bg-white text-orange-400 border-2 rounded-lg font-bold border-orange-400 hover:text-white hover:bg-orange-400' onClick={()=>removeItemFromCart(item?.item?.card?.info?.id)}>Remove</button>
+                             </div>
+                      
                         </div>
                         <hr className="mt-3"></hr>
                         
@@ -58,22 +98,22 @@ const Cart=()=>{
                     <hr className='my-4 mx-2 p-2'></hr>
                     
                     <div className='flex justify-between mx-3 my-3'>
-                       <p className='text-xl font-normal'>Price (8 items)</p>
-                       <p className='text-xl font-semibold'>₹ 800</p>
+                       <p className='text-xl font-normal'>Price ({cartItems.length} items)</p>
+                       <p className='text-xl font-semibold'>₹ {total}</p>
                         </div>
                         <div className='flex justify-between mx-3 my-4'>
                        <p className='text-xl font-normal'>Discount (10%)</p>
-                       <p className='text-xl font-semibold'>-₹ 200</p>
+                       <p className='text-xl font-semibold'>-₹ {(0.1*total).toFixed(2)}</p>
                         </div>
                         <div className='flex justify-between mx-3 my-4'>
                        <p className='text-xl font-normal'>Delivery charges (5%)</p>
-                       <p className='text-xl font-semibold'>+₹ 120</p>
+                       <p className='text-xl font-semibold'>+₹ {(0.05*total).toFixed(2)}</p>
                         </div>
-                        <p className='mx-3 my-1'> You'll save ₹236.80 on this order 🎉</p>
+                        <p className='mx-3 my-1'> You'll save ₹{(0.1*total).toFixed(2)} on this order 🎉</p>
                         <hr className='mt-4 mx-2 p-2'></hr>
                         <div className='flex justify-between mx-3'>
                        <p className='text-3xl font-primary font-bold'>Total Amount</p>
-                       <p className='text-3xl font-bold'>₹ 2360</p>
+                       <p className='text-3xl font-bold'>₹ {((total)-(0.1*total)+(0.05*total)).toFixed(2)}</p>
                         </div>
                         <hr className='my-4 mx-2 p-2'></hr>
                         <button className='w-full p-4 mx-auto font-bold bg-orange-400 text-white text-xl rounded-lg'>PLACE ORDER</button>
