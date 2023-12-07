@@ -6,6 +6,15 @@
   font-family: Grotesque;
   src: url("./src/assets/fonts/FontsFree-Net-BasisGrotesquePro-Regular.ttf") format("truetype");
 }
+.example::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.example {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 /*
 Select all CSS
 * {
