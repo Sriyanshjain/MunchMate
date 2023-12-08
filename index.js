@@ -2,8 +2,8 @@ import Cart from "./src/components/Cart";
 import Shimmer from "./src/components/Shimmer";
 import { Body } from "./src/components/Body";
 import ReactDOM from "react-dom/client";
-import { lazy, Suspense, useContext } from "react"
-import { createBrowserRouter,Outlet,RouterProvider } from "react-router-dom";
+import { lazy, Suspense} from "react"
+import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import Error from "./src/components/Error";
 import ContactUs from "./src/components/ContactUs";
 import About from "./src/components/About"
