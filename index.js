@@ -9,8 +9,8 @@ import ContactUs from "./src/components/ContactUs";
 import About from "./src/components/About"
 import RestaurantMenu from "./src/components/RestaurantMenu";
 import App from "./src/App";
-const Grocery=lazy(()=>{
-    return  import("./src/components/Grocery")
+const About=lazy(()=>{
+    return  import("./src/components/About")
  })
  const appRouter=createBrowserRouter([
     {
@@ -20,11 +20,6 @@ const Grocery=lazy(()=>{
             {
                 path:"/",
                 element:<Body/>,
-                
-            },
-            {
-                path:"/about",
-                element:<About/>,
                 
             },
             {
@@ -40,8 +35,8 @@ const Grocery=lazy(()=>{
                 element:<Cart/>
             },
             {
-                path:"/grocery",
-                element:<Suspense fallback={<Shimmer/>}><Grocery/></Suspense>
+                path:"/about",
+                element:<Suspense fallback={<Shimmer/>}><About/></Suspense>
             }
         ],
         errorElement:<Error/>

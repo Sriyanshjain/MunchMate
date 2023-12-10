@@ -31,13 +31,12 @@ const Carousel = ({ offers }) => {
         },
       },
     },
-    [
-      // add plugins here
-    ]
   );
   return (
-    <div className="flex flex-col">
-      <div className="self-end mt-[-23]">
+    <div >
+      <div className="flex justify-between items-center mb-4">
+       <h2 className=' font-primary font-extrabold  text-xl sm:text-2xl  text-black-heading'>Best offers for you</h2>
+      <div className="flex gap-2 items-center">
         {loaded  && instanceRef.current && (
           <>
             <button
@@ -64,7 +63,8 @@ const Carousel = ({ offers }) => {
           </>
         )}
       </div>
-      <div ref={sliderRef} className="keen-slider m-5">
+      </div>
+      <div ref={sliderRef} className="keen-slider m-4">
         {offers.map((item) => {
           return <Banner key={item.id} banner={item} />;
         })}

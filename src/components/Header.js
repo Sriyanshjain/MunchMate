@@ -3,8 +3,10 @@ import { UserContext } from '../utils/UserContext';
 import { LOGO_URL } from '../utils/constants'
 import {Link} from 'react-router-dom';
 import {
-  BuildingStorefrontIcon,
+  Bars3BottomLeftIcon,
   ChatBubbleOvalLeftIcon,
+  ShoppingCartIcon,
+  HomeIcon,
 } from '@heroicons/react/24/outline';
 import useOnlineStatus from '../utils/useOnlineStatus'
 import { useSelector } from 'react-redux';
@@ -15,25 +17,25 @@ export const Header = () => {
   const user=useContext(UserContext);
   const cartItems= useSelector((store)=>store.cart.items)
   return (
-    <div className='sticky z-20 w-full bg-white top-0'>
-    <div className='flex justify-between h-24 shadow-lg items-center '>
-        <div className='w-32 h-20 ml-32' >
+    <div className='sticky z-20 w-full shadow-lg bg-white top-0'>
+    <div className='flex w-full md:justify-between justify-between py-3  items-center '>
+        <div className=' w-16 h-10 sm:w-32 sm:h-20 lg:ml-28 sm:ml-0' >
       
-          <Link to='/'><img className='cursor-pointer' src={LOGO_URL}></img></Link>
+          <Link to='/'><img className='cursor-pointer w-15 h-20' src={require("../assets/MunchMate.png")}></img></Link>
         
        
             
             </div>
             <div> 
-            <ul className='flex '>
-                <li className='p-4 hover:text-orange-400 cursor-pointer text-lg  font-primary font-bold'>Online:{onlineStatus?"🟢":"🔴"}</li>
-                <li className='p-4  hover:text-orange-400 cursor-pointer text-lg  font-primary font-bold'>Home</li>
-                <li className='p-4  hover:text-orange-400 cursor-pointer text-lg font-primary font-bold'><Link className='link_res' to="/grocery"><span><BuildingStorefrontIcon className='w-4 h-4 inline-block ' />{' '}</span><span className='pl-[8]'>Grocery</span></Link></li>
-                <li className='p-4  hover:text-orange-400 cursor-pointer text-lg  font-primary font-bold'><Link className='link_res' to="/about">About us</Link></li>
-                <li className='p-4  hover:text-orange-400 cursor-pointer text-lg  font-primary font-bold'><Link  className='link_res' to="/contact"><span><ChatBubbleOvalLeftIcon className='w-4 h-4 inline-block ' />{' '}</span><span className='pl-[8]'>Contact us</span></Link></li>
-                <li className='p-4  hover:text-orange-400 cursor-pointer text-lg   font-primary font-bold'><Link className='link_res' to="/cart">Cart- {cartItems.length} items</Link></li>
-                {/* <li className='p-4  hover:text-orange-400 cursor-pointer text-lg   font-primary font-bold'>{user.loggedInUser}</li> */}
-                <li className='p-4  hover:text-orange-400 cursor-pointer text-lg  font-primary font-bold'>
+            <ul className='flex  md:flex-row px-3'>
+                <li className='p-1 md:px-2 md:py-4 hover:text-orange-400 cursor-pointer text-[12px] md:text-lg sm:text-sm  font-primary font-bold hidden md:block'>Online:{onlineStatus?"🟢":"🔴"}</li>
+                <li className='p-1 md:px-2 md:py-4 hover:text-orange-400 cursor-pointer text-[12px] md:text-lg sm:text-sm  font-primary font-bold'><Link className='link_res' to="/"><span className='hidden sm:inline-block '><HomeIcon className='sm:w-4 sm:h-4 md:w-6 md:h-6 inline-block' />{' '}</span><span className='lg:pl-[8]'>Home</span></Link></li>
+    
+                <li className='p-1 md:px-2 md:py-4 hover:text-orange-400 cursor-pointer text-[12px]  md:text-lg sm:text-sm  font-primary font-bold'><Link className='link_res' to="/about"><span className='hidden sm:inline-block '><Bars3BottomLeftIcon className='sm:w-4 sm:h-4 md:w-6 md:h-6 inline-block' />{' '}</span><span className='lg:pl-[8]'>About us</span></Link></li>
+                <li className='p-1 md:px-2 md:py-4 hover:text-orange-400 cursor-pointer text-[12px] md:text-lg sm:text-sm  font-primary font-bold'><Link  className='link_res' to="/contact"><span className='hidden sm:inline-block '><ChatBubbleOvalLeftIcon className='sm:w-4 sm:h-4 md:w-6  md:h-6 inline-block ' />{' '}</span><span className='lg:pl-[8]'>Contact us</span></Link></li>
+                <li className='p-1 md:px-2 md:py-4 hover:text-orange-400 cursor-pointer text-[12px] md:text-lg sm:text-sm  font-primary font-bold'><Link className='link_res' to="/cart"><span className='hidden sm:inline-block '><ShoppingCartIcon className='sm:w-4 sm:h-4 md:w-6  md:h-6 inline-block ' />{' '}</span><span className='lg:pl-[8]'>Cart</span></Link>{cartItems.length>0 && <div className='block ml-5 sm:ml-16 bg-orange-400 text-[8px] text-white sm:px-2 px-1  rounded-[50%] sm:-mt-10 -mt-[1.6rem] sm:text-[12px]'>{cartItems.length}</div>}</li>
+                {/* <li className='px-4  hover:text-orange-400 cursor-pointer text-lg   font-primary font-bold'>{user.loggedInUser}</li> */}
+                <li className='p-1 md:px-2 md:py-4 hover:text-orange-400 cursor-pointer  text-[12px] md:text-lg sm:text-sm  font-primary font-bold'>
                   <button className="login" onClick={()=>{
                     btnName==="Login"?setbtnName("Logout"):setbtnName("Login")
                   }}>{btnName}</button>

@@ -9,11 +9,46 @@
 .example::-webkit-scrollbar {
   display: none;
 }
-
+@layer components {
+  .container-max {
+    @apply container max-w-[1080px] w-[90%] mx-auto;
+  }
+  .container-md {
+    @apply container max-w-[768px] w-[90%] mx-auto;
+  }
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+}
 /* Hide scrollbar for IE, Edge and Firefox */
 .example {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+html {
+  scroll-behavior: smooth;
+}
+.overlay-container {
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7) 10%,
+    rgba(0, 0, 0, 0) 90%
+  ); /* Black see-through */
+  color: #f1f1f1;
+  width: 100%;
+  transition: 0.5s ease;
+  opacity: 1;
+  color: white;
+  font-size: 20px;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
 }
 /*
 Select all CSS

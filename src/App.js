@@ -9,6 +9,7 @@ import { UserContext } from "./utils/UserContext";
 import { Provider } from "react-redux";
 
 import appStore from "./utils/store/appStore";
+import { Footer } from "./components/Footer";
 //Chunking
 //Lazy-loading
 //Code-splitting
@@ -26,7 +27,7 @@ const App=()=>{
            
             <Header/>
             <Outlet/>
-           
+            <Footer/>
         </div>
         </UserContext.Provider>
         </Provider>
