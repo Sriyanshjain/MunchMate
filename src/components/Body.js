@@ -36,6 +36,19 @@ export const Body = () => {
  setListOfRes(gridData);
  setFilteredList(gridData)
   }
+  const filterTopRated=()=>{
+    
+      const filteredList=listOfRes.filter(res=>res.info.avgRating>4.2);
+      setShowToprated((prev)=>!prev)
+      setFilteredList(filteredList);
+    
+  }
+  const undoFilterTopRated=()=>{
+    
+    setShowToprated((prev)=>!prev)
+    setFilteredList(listOfRes);
+  
+}
   if(!onlineStatus)
   return <h1 className='text-bold text-xl text-center'>Looks like you are offline ! Please check your internet</h1>
 //whenever we change a state variable , the whole component is re rendered by React
@@ -56,15 +69,8 @@ export const Body = () => {
           }}><MagnifyingGlassIcon className='w-3 h-3 text-center sm:w-5 sm:h-5 font-semibold'/></button>
         <div className='w-5/12'>
         {!showTopRated?
-           <button className=' bg-white  text-black-heading border font-primary font-semibold border-gray-400 sm:ml-4 text-xs sm:text-sm p-1 sm:p-2 rounded-lg '  onClick={()=>{
-            const filteredList=listOfRes.filter(res=>res.info.avgRating>4.2);
-            setShowToprated((prev)=>!prev)
-            setFilteredList(filteredList);
-          }}>Top Rated Restaurants</button>:
-          <button className='bg-orange-400 font-primary text-white font-semibold sm:ml-4 text-xs sm:text-sm p-1 sm:p-2 rounded-lg '  onClick={()=>{
-            setShowToprated((prev)=>!prev)
-            setFilteredList(listOfRes);
-          }}>Top Rated Restaurants</button>
+           <button className=' bg-white  text-black-heading border font-primary font-semibold border-gray-400 sm:ml-4 text-xs sm:text-sm p-1 sm:p-2 rounded-lg '  onClick={filterTopRated}>Top Rated Restaurants</button>:
+          <button className='bg-orange-400 font-primary text-white font-semibold sm:ml-4 text-xs sm:text-sm p-1 sm:p-2 rounded-lg '  onClick={undoFilterTopRated}>Top Rated Restaurants</button>
         }
        </div>
     

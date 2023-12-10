@@ -14,11 +14,11 @@ const Cart = () => {
   const dispatch = useDispatch();
   const [total, setTotal] = useState(0);
   const modifyCartValues = () => {
-    let totalPrice = 0;
+    var totalPrice = 0;
     cartItems.forEach((obj) => {
       const price =
         (obj?.item?.card?.info?.price || obj?.item?.card?.info?.defaultPrice) *
-          obj?.quantity || 0;
+          (obj?.quantity || 0);
       totalPrice += price;
     });
     setTotal(totalPrice/100);

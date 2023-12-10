@@ -6,7 +6,6 @@ import { lazy, Suspense} from "react"
 import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import Error from "./src/components/Error";
 import ContactUs from "./src/components/ContactUs";
-import About from "./src/components/About"
 import RestaurantMenu from "./src/components/RestaurantMenu";
 import App from "./src/App";
 const About=lazy(()=>{
