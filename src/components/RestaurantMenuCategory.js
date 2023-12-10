@@ -36,7 +36,7 @@ const RestaurantMenuCategory =(props)=>{
                             <img src={item?.card?.info?.itemAttribute?.vegClassifier==='VEG' ?require('../assets/veg.png'):require('../assets/non-veg.png')} alt='' className="w-10 bg-center h-9 p-1 rounded-lg" />}    
                             
                              <p className="p-1  md:text-2xl sm:text-xl text-lg font-primary font-bold text-black-heading">{item?.card?.info?.name}</p>
-                             <p className="p-1 text-black-heading font-bold md:text-2xl sm:text-xl text-lg">₹{item?.card?.info?.price/100|item?.card?.info?.defaultPrice/100}</p>
+                             <p className="p-1 text-black-heading font-bold md:text-2xl sm:text-xl text-lg">₹{item?.card?.info?.price/100||item?.card?.info?.defaultPrice/100}</p>
                              <p className="p-1 hidden md:block mt-2 text-black-400 text-sm">{item?.card?.info?.description}</p>
                              </div>
                              <div className=" md:basis-4/12 basis-5/12  w-full space-y-2 p-2 relative">

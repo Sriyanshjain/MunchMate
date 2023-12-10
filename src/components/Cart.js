@@ -17,11 +17,11 @@ const Cart = () => {
     let totalPrice = 0;
     cartItems.forEach((obj) => {
       const price =
-        (obj?.item?.card?.info?.price | obj?.item?.card?.info?.defaultPrice) *
+        (obj?.item?.card?.info?.price || obj?.item?.card?.info?.defaultPrice) *
           obj?.quantity || 0;
       totalPrice += price;
     });
-    setTotal(totalPrice / 100);
+    setTotal(totalPrice/100);
   };
   useEffect(() => {
     modifyCartValues();
@@ -130,11 +130,11 @@ const Cart = () => {
                     </p>
                     <p className="p-1 text-black-heading font-bold  text-xs sm:text-lg">
                       ₹
-                      {(item?.item?.card?.info?.price |
+                      {(item?.item?.card?.info?.price ||
                         item?.item?.card?.info?.defaultPrice) /
                         100}{" "}
                       (
-                      {(item?.item?.card?.info?.price |
+                      {(item?.item?.card?.info?.price ||
                         item?.item?.card?.info?.defaultPrice) /
                         100}
                       ⨯ {item?.quantity})
