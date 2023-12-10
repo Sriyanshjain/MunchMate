@@ -41,15 +41,21 @@ const Cart = () => {
 
   if (cartItems.length == 0) {
     return (
-      <div className="text-center mt-4">
+      <div className="items-center flex flex-col  container-max min-h-screen justify-center">
+        <div>
         <p className=" text-3xl font-semibold font-primary my-auto">
-          Such Empty...
+          Such empty...
+         
         </p>
+        </div>
+        <div>
         <Link to="/">
-          <button className="p-4 mt-4 font-bold bg-orange-400 text-white text-xl rounded-lg">
+          <button className="p-4 mt-4 font-bold bg-orange-400 text-white block text-xl rounded-lg">
             EXPLORE RESTAURANTS NEAR YOU
           </button>
         </Link>
+        </div>
+       
       </div>
     );
   }

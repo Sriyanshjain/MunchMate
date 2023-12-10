@@ -5,7 +5,8 @@ import {
   ArrowLongLeftIcon,
   ArrowLongRightIcon,
 } from '@heroicons/react/24/outline';
-const Carousel = ({ offers }) => {
+import ShimmerBanner from "./ShimmerBanner";
+const Carousel = ({ offers,isLoading }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false)
   const [sliderRef, instanceRef] = useKeenSlider(
@@ -64,11 +65,18 @@ const Carousel = ({ offers }) => {
         )}
       </div>
       </div>
-      <div ref={sliderRef} className="keen-slider m-4">
-        {offers.map((item) => {
-          return <Banner key={item.id} banner={item} />;
-        })}
-      </div>
+      {isLoading?(
+        <div  className='flex gap-4 md:gap-8 mb-8'>
+          {Array.from({length:3}).map((_,i)=><ShimmerBanner key={i}/>)}
+        </div>
+      ):  <div ref={sliderRef} className="keen-slider m-4">
+      {offers.map((item) => {
+        return <Banner key={item.id} banner={item} />;
+      })}
+    </div>
+
+      }
+    
     </div>
   );
 };

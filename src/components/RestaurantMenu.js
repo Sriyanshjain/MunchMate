@@ -1,15 +1,15 @@
 import { CDN_URL } from "../utils/constants";
-import Shimmer from "./Shimmer";
+import ShimmerRestaurant from "./ShimmerRestaurant";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantMenuCategory from "./RestaurantMenuCategory";
 import { StarIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 const RestaurantMenu = () => {
-  const { resId } = useParams();
-  const resInfo = useRestaurantMenu(resId);
+  const { resId} = useParams();
+  const {resInfo,isLoading,error} = useRestaurantMenu(resId);
   const [showIndex,setShowIndex]=useState(null);
-  if (!resInfo) return <Shimmer />;
+  if (!resInfo) return <ShimmerRestaurant />;
   const {
     name,
     cuisines,

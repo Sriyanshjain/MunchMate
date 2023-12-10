@@ -1,5 +1,5 @@
 import Cart from "./src/components/Cart";
-import Shimmer from "./src/components/Shimmer";
+import ShimmerResCard from "./src/components/ShimmerResCard";
 import { Body } from "./src/components/Body";
 import ReactDOM from "react-dom/client";
 import { lazy, Suspense} from "react"
@@ -35,7 +35,7 @@ const About=lazy(()=>{
             },
             {
                 path:"/about",
-                element:<Suspense fallback={<Shimmer/>}><About/></Suspense>
+                element:<Suspense fallback={<ShimmerResCard/>}><About/></Suspense>
             }
         ],
         errorElement:<Error/>
