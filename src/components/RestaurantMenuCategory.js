@@ -40,13 +40,14 @@ const RestaurantMenuCategory =(props)=>{
                              <p className="p-1 hidden md:block mt-2 text-black-400 text-sm">{item?.card?.info?.description}</p>
                              </div>
                              <div className=" md:basis-4/12 basis-5/12  w-full space-y-2 p-2 relative">
-                                <div className="absolute">
-                                <button onClick={()=>handleAdd(item)} className="text-orange-500 px-6 bg-white rounded-md font-primary font-extrabold py-3 ml-6 mt-[6.5rem] shadow-md  hover:text-white hover:bg-orange-500 ">ADD</button>
-                                </div>
-                            { (item?.card?.info?.imageId?<img src={CDN_URL+item?.card?.info?.imageId } className="w-full h-32 aspect-video object-cover bg-center rounded-lg shadow-lg" />:
-                            <img src={require('../assets/sample.png')} alt='' className="w-full aspect-video object-cover bg-center h-32 rounded-lg shadow-lg" />)
+                             { (item?.card?.info?.imageId?<img src={CDN_URL+item?.card?.info?.imageId } className="w-full h-auto  bg-center rounded-lg shadow-lg" />:
+                            <img src={require('../assets/sample.png')} alt='' className="w-full  bg-center h-auto rounded-lg shadow-lg" />)
 
                             }
+                              
+                                <button onClick={()=>handleAdd(item)} className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-orange-500 px-4 bg-white rounded-md font-primary font-extrabold py-2  shadow-md  hover:text-white hover:bg-orange-500 ">ADD</button>
+                                
+                            
                                 
                                
                                 

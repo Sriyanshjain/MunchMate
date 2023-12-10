@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import { GET_RESTAURANT } from "./constants";
+import { useSelector } from "react-redux";
 const useRestaurant=()=>{
+    
+    const address=useSelector((store) => store.location.address);
     const [listOffers, setListOffers] = useState([]);
     const [listOfRes, setListOfRes] = useState([]);
     const [isLoading,setIsLoading]=useState(true);
     useEffect(()=>{
      fetchRestaurantList()
-    },[])
+    },[address])
 
     const fetchRestaurantList=async()=>{
         try{
             setIsLoading(true);
-            const data = await fetch(GET_RESTAURANT);
+            const data = await fetch(GET_RESTAURANT +'?lat='+`${address.latitude}`+'&lng='+`${address.longitude}`);
             const jsonData = await data.json();
         
             const gridData =

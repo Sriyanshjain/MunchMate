@@ -38,7 +38,7 @@ const Carousel = ({ offers,isLoading }) => {
       <div className="flex justify-between items-center mb-4">
        <h2 className=' font-primary font-extrabold  text-xl sm:text-2xl  text-black-heading'>Best offers for you</h2>
       <div className="flex gap-2 items-center">
-        {loaded  && instanceRef.current && (
+        {loaded  && (!isLoading) && instanceRef.current && (
           <>
             <button
               className="rounded-full bg-gray-100 p-2 mr-1"

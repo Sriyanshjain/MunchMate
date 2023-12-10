@@ -61,7 +61,7 @@ const Cart = () => {
   }
   return (
     <div className="justify-center">
-      <div className="flex flex-col w-full lg:w-10/12 md:flex-row  md:justify-center mx-auto    min-h-[40rem]">
+      <div className="flex flex-col w-full lg:w-10/12 md:flex-row md:max-h-screen  md:justify-center mx-auto    ">
         <div className="w-full md:w-7/12 md:overflow-y-auto example  md:mt-10">
           <div className="flex justify-between">
             <p className=" text-xl sm:text-3xl font-bold font-primary m-2 p-2">
@@ -162,7 +162,7 @@ const Cart = () => {
           })}
         </div>
         {/* Price card */}
-        <div className=" w-11/12 mx-5 md:w-5/12  md:mx-5 border border-gray bg-white rounded-lg shadow-lg my-2  sm:mx-8 ">
+        <div className=" w-11/12 mx-5 md:w-5/12  md:h-min md:mx-5 border border-gray bg-white rounded-lg shadow-lg my-2  sm:mx-8  ">
           <div className="sm:p-8 p-4">
             <h1 className="font-primary font-bold text-2xl text-black ml-2">
               Order Summary

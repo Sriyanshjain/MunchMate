@@ -8,21 +8,29 @@ import Carousel from "./Carousel";
 
 import RestaurantList from "./RestaurantList";
 import useRestaurant from "../utils/useRestaurant";
-import ShimmerResCard from "./ShimmerResCard";
+import { useUserLocation } from "./useUserLocation";
+
 
 export const Body = () => {
 
   const [searchText, setSearchText] = useState("");
+  //const [bannerOffers,setBannerOffers]=useState([]);
   const [filteredList, setFilteredList] = useState([]);
   const [showTopRated, setShowToprated] = useState(false);
   const onlineStatus = useOnlineStatus();
-  const {listOffers,listOfRes,isLoading}=useRestaurant()
+  
   //if no dependency array=>useEffect called after each render
   //if empty dependency array ([])=>useEffect called after first render(just once)
   //if something inside dependency array=>useEffect called only when dependency changes
 
+  const {locationAllowed}=useUserLocation();
+  
+  const {listOffers,listOfRes,isLoading}=useRestaurant();
+
+  //restaurants api will be called again when user allows location access
  useEffect(()=>{
   setFilteredList(listOfRes)
+ // setBannerOffers(listOffers);
  },[isLoading])
 
   const filterTopRated = () => {
@@ -34,9 +42,17 @@ export const Body = () => {
     setShowToprated((prev) => !prev);
     setFilteredList(listOfRes);
   };
+  const handleSearch=(e)=>{
+    e.preventDefault();
+    let list = listOfRes.filter((res) => {
+      const name = res.info.name.toLowerCase();
+      if (name.includes(searchText.toLowerCase())) return res;
+    });
+    setFilteredList(list);
+  }
   if (!onlineStatus)
     return (
-      <h1 className="text-bold text-xl text-center">
+      <h1 className="text-bold text-xl text-center min-h-screen">
         Looks like you are offline ! Please check your internet
       </h1>
     );
@@ -57,14 +73,7 @@ export const Body = () => {
 
         <button
           className=" w-1/12 bg-orange-400  text-white p-1 sm:p-2  rounded-md"
-          onClick={(e) => {
-            e.preventDefault();
-            let list = listOfRes.filter((res) => {
-              const name = res.info.name.toLowerCase();
-              if (name.includes(searchText.toLowerCase())) return res;
-            });
-            setFilteredList(list);
-          }}
+          onClick={handleSearch}
         >
           <MagnifyingGlassIcon className="w-3 h-3 text-center sm:w-5 sm:h-5 font-semibold" />
         </button>
@@ -95,7 +104,7 @@ export const Body = () => {
         <hr className="border-t border-gray-300 my-4" />
         {/* Restaurant list */}
         <h2 className="font-primary font-extrabold  text-xl sm:text-2xl  text-black-heading self-start">
-          Restaurants near you{" "}
+         {locationAllowed?"Restaurants near you ":"Restaurants in Bangalore"} 
         </h2>
         <RestaurantList filteredList={filteredList} isLoading={isLoading} />
       </div>
