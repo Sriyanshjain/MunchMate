@@ -27,7 +27,7 @@ const useRestaurant=()=>{
         }
         catch(error)
         {
-            console.log(error.response)
+            //console.log(error.response)
         }
         finally{
             setIsLoading(false)

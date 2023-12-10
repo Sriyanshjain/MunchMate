@@ -10,7 +10,7 @@ class UserClass extends React.Component{
     componentDidMount()
     {
         //for api calls
-        console.log("componentDidMount called")
+       // console.log("componentDidMount called")
     }
     render()
     {const {name, contact}=this.props;
