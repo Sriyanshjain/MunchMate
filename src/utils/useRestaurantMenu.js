@@ -24,7 +24,7 @@ const useRestaurantMenu=(resId)=>{
         }
      catch(error)
      {
-        console.log("an error has occured"+ error);
+       // console.log("an error has occured"+ error);
         setError(error.response);
      }
      finally {

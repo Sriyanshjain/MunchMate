@@ -2,21 +2,7 @@ import { UserContext } from "../utils/UserContext";
 import UserClass from "./UserClass";
 
 const About = () => {
-  const points = [
-    "Munchmate (swiggy clone) - food ordering app.",
-    "Leverages live swiggy API.",
-    "Takes location of the user to show nearby restaurants.(Shows bangalore restaurants otherwise).",
-    "Shimmer UI",
-    "Search Restaurants",
-    "Filter Top rated Restaurants",
-    "Explore Delicious Menus offered by Top Restaurants",
-    "Fully Responsive",
-    "Built using React, TailwindCSS.",
-    "Uses custom hooks",
-    "Uses Redux-Toolkit for state management.",
-    "Jest (Testing): Ensuring our app is robust and bug-free.",
-    "Uses Parcel as bundler.",
-  ];
+ 
   return (
     <div className="min-h-screen text-left ">
       <div class="container mx-auto my-8 p-8 bg-white shadow-lg  border border-gray-300 rounded-lg">
@@ -97,17 +83,7 @@ const About = () => {
         </p>
       </div>
 
-      {/* {
-                points.map((item)=><p className='text-xl m-2 p-2 font-primary text-black '>
-                {item}
-
-                </p>)
-            } */}
-
-      {/* <UserContext.Consumer>
-                {(data)=> <UserClass name={data.loggedInUser} contact={"8077778418"}/>}
-           
-            </UserContext.Consumer> */}
+    
     </div>
   );
 };

@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems);
+  //console.log(cartItems);
   const dispatch = useDispatch();
   const [total, setTotal] = useState(0);
   const modifyCartValues = () => {
