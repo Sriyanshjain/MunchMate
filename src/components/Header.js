@@ -19,10 +19,15 @@ export const Header = () => {
   return (
     <div className='sticky z-20 w-full shadow-lg bg-white top-0'>
     <div className='flex w-full md:justify-between justify-between py-3  items-center '>
-        <div className=' w-16 h-10 sm:w-32 sm:h-20 lg:ml-28 sm:ml-0' >
+        <div className=' ml-2 w-8 h-10 sm:ml-4 md:h-15  lg:ml-28 ' >
       
-          <Link to='/'><img className='cursor-pointer w-15 h-20' src={require("../assets/MunchMate.png")}></img></Link>
-        
+        <Link 
+      to='/'
+      data-testid='logo'
+      className='text-xl md:text-2xl font-semibold flex items-center'
+    ><img className='cursor-pointer  w-full' src={require("../assets/MunchMate.png")}></img>
+     <span className='hidden sm:block sm:text-lg logo text-orange-400 sm:tracking-wider italic sm:ml-1'>MUNCHMATE</span>
+    </Link>
        
             
             </div>
