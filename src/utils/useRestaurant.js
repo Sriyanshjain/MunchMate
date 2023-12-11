@@ -4,12 +4,13 @@ import { useSelector } from "react-redux";
 const useRestaurant=()=>{
     
     const address=useSelector((store) => store.location.address);
+    const locationAllowed=JSON.parse(localStorage.getItem('address'))?.locationAllowed||null     ;
     const [listOffers, setListOffers] = useState([]);
     const [listOfRes, setListOfRes] = useState([]);
     const [isLoading,setIsLoading]=useState(true);
     useEffect(()=>{
      fetchRestaurantList()
-    },[address])
+    },[locationAllowed])
 
     const fetchRestaurantList=async()=>{
         try{

@@ -14,7 +14,7 @@ import { useUserLocation } from "./useUserLocation";
 export const Body = () => {
 
   const [searchText, setSearchText] = useState("");
-  //const [bannerOffers,setBannerOffers]=useState([]);
+ // const [bannerOffers,setBannerOffers]=useState([]);
   const [filteredList, setFilteredList] = useState([]);
   const [showTopRated, setShowToprated] = useState(false);
   const onlineStatus = useOnlineStatus();
@@ -30,7 +30,7 @@ export const Body = () => {
   //restaurants api will be called again when user allows location access
  useEffect(()=>{
   setFilteredList(listOfRes)
- // setBannerOffers(listOffers);
+ //setBannerOffers(listOffers);
  },[isLoading])
 
   const filterTopRated = () => {
@@ -104,7 +104,7 @@ export const Body = () => {
         <hr className="border-t border-gray-300 my-4" />
         {/* Restaurant list */}
         <h2 className="font-primary font-extrabold  text-xl sm:text-2xl  text-black-heading self-start">
-         {locationAllowed?"Restaurants near you ":"Restaurants in Bangalore"} 
+         {localStorage.getItem('address')?"Restaurants near you ":"Restaurants in Bangalore"} 
         </h2>
         <RestaurantList filteredList={filteredList} isLoading={isLoading} />
       </div>

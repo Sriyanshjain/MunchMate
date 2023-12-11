@@ -1,5 +1,5 @@
 import Banner from "./Banner";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useKeenSlider } from "keen-slider/react";
 import {
   ArrowLongLeftIcon,
@@ -16,6 +16,8 @@ const Carousel = ({ offers,isLoading }) => {
       slideChanged(slider) {
         setCurrentSlide(slider.track.details.rel);
       },
+      
+   
       created() {
         setLoaded(true)
       },
@@ -33,12 +35,14 @@ const Carousel = ({ offers,isLoading }) => {
       },
     },
   );
+
+
   return (
     <div >
       <div className="flex justify-between items-center mb-4">
        <h2 className=' font-primary font-extrabold  text-xl sm:text-2xl  text-black-heading'>Best offers for you</h2>
       <div className="flex gap-2 items-center">
-        {loaded  && (!isLoading) && instanceRef.current && (
+        {loaded   && instanceRef.current && (
           <>
             <button
               className="rounded-full bg-gray-100 p-2 mr-1"
@@ -56,7 +60,7 @@ const Carousel = ({ offers,isLoading }) => {
               }
               disabled={
                 currentSlide ===
-                instanceRef.current.track.details.slides.length - 1
+                instanceRef.current.track.details?.slides.length - 1
               }
             >
             <ArrowLongRightIcon className='w-4 h-4' />{' '}

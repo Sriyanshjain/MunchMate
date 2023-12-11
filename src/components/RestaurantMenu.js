@@ -22,10 +22,10 @@ const RestaurantMenu = () => {
     resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c) =>
       c?.card?.card?.["@type"].endsWith("v2.ItemCategory")
     );
-    console.log(resInfo?.cards[0]?.card?.card?.info)
-    console.log(categories)
+   // console.log(resInfo?.cards[0]?.card?.card?.info)
+    //console.log(categories)
 
-  return (!isLoading && <div className="flex justify-center my-8">
+  return (!isLoading && <div className="flex justify-center my-8 min-h-screen">
   <div className=" w-11/12   sm:w-9/12 md:w-6/12">
     <div className="flex justify-between">
     <div className="flex flex-col ">

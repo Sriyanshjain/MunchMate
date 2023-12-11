@@ -16,6 +16,7 @@ export const useUserLocation=()=>{
                   navigator.geolocation.getCurrentPosition(resolve, reject);
                 });
                 setLocationAllowed(true);
+                
                 setLocation({
                   latitude: position.coords.latitude,
                   longitude: position.coords.longitude,
@@ -24,8 +25,11 @@ export const useUserLocation=()=>{
                 dispatch(setAddress({
                   latitude: position.coords.latitude,
                   longitude: position.coords.longitude,
+                  locationAllowed:true
                 }));
               } else {
+                localStorage.setItem('address',JSON.stringify({ latitude: "12.9715987", longitude: "77.5945627",locationAllowed:false }))
+               
                 console.error('Geolocation is not supported by your browser');
               }
             } catch (error) {
