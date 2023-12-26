@@ -1,5 +1,5 @@
 import { useEffect,useState } from "react";
-import { MENU_URL } from "./constants";
+import { FREE_MENU_URL, MENU_URL } from "./constants";
 import { useSelector } from "react-redux";
 
 const useRestaurantMenu=(resId)=>{
@@ -25,7 +25,19 @@ const useRestaurantMenu=(resId)=>{
      catch(error)
      {
        // console.log("an error has occured"+ error);
+       try{
+        setIsLoading(true);
+        const data= await fetch(FREE_MENU_URL+'?lat='+`${address.latitude}`+'&lng='+`${address.longitude}`+'&restaurantId='+resId)
+        const usefulData=await data.json();
+        setResInfo(usefulData.data);
+        
+        
+    }
+    catch(error)
+    {
         setError(error.response);
+    }
+       
      }
      finally {
         setIsLoading(false);

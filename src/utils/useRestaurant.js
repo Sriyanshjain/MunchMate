@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GET_RESTAURANT } from "./constants";
+import { FREE_GET_RESTAURANT, GET_RESTAURANT } from "./constants";
 import { useSelector } from "react-redux";
 const useRestaurant=()=>{
     
@@ -28,7 +28,25 @@ const useRestaurant=()=>{
         }
         catch(error)
         {
-            //console.log(error.response)
+            try{
+                setIsLoading(true);
+                const data = await fetch(FREE_GET_RESTAURANT+'?lat='+`${address.latitude}`+'&lng='+`${address.longitude}`);
+                const jsonData = await data.json();
+            
+                const gridData =
+                  jsonData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+                    ?.restaurants;
+                const bestOffers =
+                  jsonData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info;
+                setListOffers(bestOffers);
+                setListOfRes(gridData);
+            } 
+            catch(error)
+
+            {
+             //console.log(error.response)
+            }
+           
         }
         finally{
             setIsLoading(false)
