@@ -24,13 +24,13 @@ const Carousel = ({ offers,isLoading }) => {
       mode: "free",
       breakpoints: {
         "(max-width: 480px)": {
-          slides: { perView: 1, spacing: 10 },
+          slides: { perView: 3, spacing: 10 },
         },
         "(min-width: 480px)": {
-          slides: { perView: 2, spacing: 10 },
+          slides: { perView: 5, spacing: 10 },
         },
         "(min-width: 768px)": {
-          slides: { perView: 3, spacing: 10 },
+          slides: { perView: 7, spacing: 10 },
         },
       },
     },
@@ -73,7 +73,7 @@ const Carousel = ({ offers,isLoading }) => {
         <div  className='flex gap-4 md:gap-8 mb-8'>
           {Array.from({length:3}).map((_,i)=><ShimmerBanner key={i}/>)}
         </div>
-      ):  <div ref={sliderRef} className="keen-slider m-4">
+      ):  <div ref={sliderRef} className="keen-slider m-4 ">
       {offers.map((item) => {
         return <Banner key={item.id} banner={item} />;
       })}

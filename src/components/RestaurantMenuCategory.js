@@ -1,6 +1,6 @@
 import { ChevronDownIcon ,ChevronUpIcon} from "@heroicons/react/24/outline";
 import { useState } from "react";
-import { CDN_URL } from "../utils/constants";
+import { CDN_URL, RES_CDN_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import {addItems} from "../utils/slices/cartSlice"
 const RestaurantMenuCategory =(props)=>{
@@ -40,7 +40,7 @@ const RestaurantMenuCategory =(props)=>{
                              <p className="p-1 hidden md:block mt-2 text-black-400 text-sm">{item?.card?.info?.description}</p>
                              </div>
                              <div className=" md:basis-4/12 basis-5/12  w-full space-y-2 p-2 relative">
-                             { (item?.card?.info?.imageId?<img src={CDN_URL+item?.card?.info?.imageId } className="w-full h-auto  bg-center rounded-lg shadow-lg" />:
+                             { (item?.card?.info?.imageId?<img src={RES_CDN_URL+item?.card?.info?.imageId } className="w-full h-auto  bg-center rounded-lg shadow-lg" />:
                             <img src={require('../assets/sample.png')} alt='' className="w-full  bg-center h-auto rounded-lg shadow-lg" />)
 
                             }

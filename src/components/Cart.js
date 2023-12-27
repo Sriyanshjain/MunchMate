@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { CDN_URL } from "../utils/constants";
+import { CDN_URL, RES_CDN_URL } from "../utils/constants";
 import {
   clearCart,
   increaseItemQuantity,
@@ -83,7 +83,7 @@ const Cart = () => {
                   <div className="sm:w-3/12 md:w-4/12 w-4/12 p-2  sm:p-4 mt-5 sm:mt-2 relative">
                     {item?.item?.card?.info?.imageId ? (
                       <img
-                        src={CDN_URL + item?.item?.card?.info?.imageId}
+                        src={RES_CDN_URL + item?.item?.card?.info?.imageId}
                         className=" bg-center w-full h-32 aspect-video object-cover rounded-md  shadow-lg border border-gray-200"
                       />
                     ) : (
