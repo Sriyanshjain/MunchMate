@@ -18,7 +18,7 @@ export const RestaurantCard = (props) => {
       <div className='overlay-container'>
       <img src={RES_CDN_URL + cloudinaryImageId}  alt='restaurant' className='w-full  overflow-hidden   rounded-2xl block  shadow-lg  bg-center bg-no-repeat' />
       <div className='overlay w-full rounded-md p-2 px-3 '>
-          <p className='text-xl font-bold flex gap-2 flex-wrap'>
+          <p className='lg:text-xl md:text-sm text-xs font-bold flex gap-2 flex-wrap'>
             {aggregatedDiscountInfoV3?.header
               ? aggregatedDiscountInfoV3.header
               : ''}{' '}
