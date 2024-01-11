@@ -17,13 +17,14 @@ const useRestaurant=()=>{
             setIsLoading(true);
             const data = await fetch(GET_RESTAURANT +'?lat='+`${address.latitude}`+'&lng='+`${address.longitude}`);
             const jsonData = await data.json();
-             //console.log(jsonData,"jsondata")
+             console.log(jsonData,"jsondata")
             const gridData =
               jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
-                ?.restaurants;
+                ?.restaurants ||  jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+                ?.restaurants;;
                 //console.log(gridData,"griddata")
             const bestOffers =
-              jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.info;
+              jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.info || jsonData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info;
               //console.log(bestOffers,"bestoffers")
             setListOffers(bestOffers);
             setListOfRes(gridData);

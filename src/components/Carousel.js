@@ -74,7 +74,7 @@ const Carousel = ({ offers,isLoading }) => {
           {Array.from({length:3}).map((_,i)=><ShimmerBanner key={i}/>)}
         </div>
       ):  <div ref={sliderRef} className="keen-slider m-4 ">
-      {offers.map((item) => {
+      {offers?.map((item) => {
         return <Banner key={item.id} banner={item} />;
       })}
     </div>
