@@ -17,9 +17,9 @@ const RestaurantMenu = () => {
     areaName,
     totalRatingsString,
     avgRating,
-  } = resInfo?.cards[0]?.card?.card?.info;
+  } = resInfo?.cards[2]?.card?.card?.info;
   const categories =
-    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c) =>
+    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c) =>
       c?.card?.card?.["@type"].endsWith("v2.ItemCategory")
     );
    // console.log(resInfo?.cards[0]?.card?.card?.info)
