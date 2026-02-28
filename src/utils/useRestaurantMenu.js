@@ -16,7 +16,7 @@ const useRestaurantMenu=(resId)=>{
     {
         try{
             setIsLoading(true);
-            const data= await fetch(MENU_URL+'?lat='+`${address.latitude}`+'&lng='+`${address.longitude}`+'&restaurantId='+resId)
+            const data= await fetch(MENU_URL+'?lat='+`${address.latitude}`+'&lng='+`${address.longitude}`+'&restaurantId='+resId + '&catalog_qa=undefined'+'&submitAction=ENTER')
             const usefulData=await data.json();
             setResInfo(usefulData.data);
             
@@ -27,7 +27,7 @@ const useRestaurantMenu=(resId)=>{
        // console.log("an error has occured"+ error);
        try{
         setIsLoading(true);
-        const data= await fetch(FREE_MENU_URL+'?lat='+`${address.latitude}`+'&lng='+`${address.longitude}`+'&restaurantId='+resId)
+        const data= await fetch(FREE_MENU_URL+'?lat='+`${address.latitude}`+'&lng='+`${address.longitude}`+'&restaurantId='+resId+'&catalog_qa=undefined'+'&submitAction=ENTER')
         const usefulData=await data.json();
         setResInfo(usefulData.data);
         
